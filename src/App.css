@@ -1,38 +1,167 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Chango&display=swap");
+
+/* :root {
+  --c-green: #57e500;
+  --c-blue: #00e5ca;
+  --c-purple: #7600ad;
+  --c-orange: #ef2b00;
+  --c-yellow: #e3a503;
+} */
+
+.add-event {
+  border-radius: 10px;
+  border: 0;
+  background-image: linear-gradient(90deg, var(--sv-purple), #8750a0);
+  color: white;
+  transition: all 0.3s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.add-event:hover {
+  filter: brightness(50%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.cabecera {
+  background-image: url("./assets/Porheader.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 40vh;
+  border-bottom: thick solid var(--sv-green);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.cabecera-detalle {
+  background-image: linear-gradient(var(--sv-blue), var(--sv-green));
+  height: 125px;
+  border-radius: 0 0 15px 15px;
+}
+
+.carrusel {
+  width: 600px;
+}
+
+.gradient {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#000000b2 50%, transparent);
+}
+
+.gradient h1 {
+  font-family: "Chango";
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.card-home {
+  border: thin solid;
+  width: 250px;
+  border-radius: 20px;
+  padding: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.detalle-btn {
+  background: linear-gradient(90deg, var(--sv-green), var(--sv-blue));
+  color: white;
+  width: 80%;
+  border-radius: 10px;
+  border: thin solid black;
+  transition: filter 0.4s ease;
+}
+
+.detalle-btn:hover {
+  filter: brightness(50%);
+}
+
+.header-detalles-nav {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.header-detalles-nav > div {
+  width: calc(100% / 3);
+  min-width: 200px;
+}
+
+.img-planta {
+  height: 110px;
+  width: 110px;
+  border-radius: 50%;
+  background: white;
+}
+
+.pointing {
+  width: 150px;
+  margin-right: 70px;
+  margin-left: 70px;
+}
+
+.viv-form > select {
+  color: var(--sv-blue);
+  text-align: center;
+  font-size: 1.3em;
+  border-radius: 10px;
+  background-color: white;
+  font-weight: 500;
+  text-align: center;
+  border: thin solid var(--sv-blue);
+}
+
+.viv-form > select:focus {
+  border: thin solid var(--sv-green);
+  color: var(--sv-green);
+  outline: none;
+}
+
+.expand {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.carrusel {
+  width: 600px;
+}
+
+@media screen and (max-width: 700px) {
+  .cabecera-detalle {
+    height: 90px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .carrusel {
+    width: 100%;
+  }
+
+  .error-404 {
+    width: 100%;
+    height: auto;
+  }
+
+  .header-detalles-nav {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .header-detalles-nav > div {
+    width: 100%;
+  }
+
+  .img-planta {
+    margin-top: 100px;
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    background: white;
+    border: thin solid var(--sv-green);
+  }
+
+  .cabecera-detalle {
+    height: 100px;
+  }
+
+  .pointing {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px auto 0 auto;
   }
 }
