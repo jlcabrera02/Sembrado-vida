@@ -1,0 +1,39 @@
+/*Este script de sass guarda las modificaciones css en la carperta src con el nombre mismo*/
+
+@import url("https://fonts.googleapis.com/css2?family=Cagliostro&display=swap");
+
+$variable-prefix: sv-;
+$blue: #00e5ca;
+$green: #57e500;
+$purple: #7600ad;
+$orange: #ef2b00;
+$yellow: #e3a503;
+$primary: $green;
+$secondary: $blue;
+$success: $green;
+$info: $purple;
+$font-family-sans-serif: "Cagliostro";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@for $i from 1 to 10 {
+  .wth-#{$i *10} {
+    width: #{$i * 10%};
+  }
+
+  .hgt-#{$i *10} {
+    height: #{$i * 10%};
+  }
+
+  .wth-max-#{$i *100}px {
+    max-width: #{$i * 100}px;
+  }
+}
+
+@for $i from 1 to 15 {
+  .wth-#{$i * 100}px {
+    width: #{$i * 100}px;
+  }
+  .hgt-#{$i * 100}px {
+    height: #{$i * 100}px;
+  }
+}

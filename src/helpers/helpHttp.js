@@ -28,9 +28,9 @@ export default function helpHttp() {
     );
   };
 
-  let host = "https://jlcabrera.000webhostapp.com";
+  //let host = "https://jlcabrera.000webhostapp.com";
   //let host = "http://localhost/backend";
-  //let host = "http://192.168.1.108";
+  let host = "http://192.168.1.109";
 
   const get = (url, options = {}) => customFetch(`${host}${url}`, options);
 

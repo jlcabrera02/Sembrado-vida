@@ -1,9 +1,6 @@
 <?php
 require_once "Autoload.php";
 $Autoload = new Autoload;
-header("Access-Control-Allow-Headers: content-type");
-header("Access-Control-Allow-Methods: OPTIONS,GET,PUT,POST,DELETE");
-header("Access-Control-Allow-Origin: *");
 
 header("Content-type: application/json");
 $plantas = new PlantasController;
@@ -20,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
   
 }else if ($_SERVER["REQUEST_METHOD"] == "POST"){
   $data = file_get_contents("php://input");
-  $post = $plantas->postPlantas($data);
+  $post = $plantas->post_plantas($data);
 
   if (isset($post['result']['error_id'])){
     $responseCode = $post["result"]["error_id"];
@@ -34,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 }else if ($_SERVER["REQUEST_METHOD"] == "PUT"){
 
   $data = file_get_contents("php://input");
-  $put = $plantas->putPlantas($data);
+  $put = $plantas->put_plantas($data);
   
   if( isset($put['result']['error_id']) ){
     $responseCode = $put["result"]["error_id"];
@@ -47,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 }else if ($_SERVER["REQUEST_METHOD"] == "DELETE"){
   
   $data = file_get_contents("php://input");
-  $del = $plantas->deletePlantas($data);
+  $del = $plantas->delete_plantas($data);
   
   if( isset($del['result']['error_id']) ){
     $responseCode = $del["result"]["error_id"];

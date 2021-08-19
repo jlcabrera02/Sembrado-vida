@@ -1,6 +1,7 @@
 <?php
 
 class AuthController extends AuthModel {
+
   public function login($data){
     $respuesta = new RespuestasController;
     $json = json_decode($data, true);

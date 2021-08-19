@@ -1,149 +1,119 @@
 import React, { useState } from "react";
 import useAuth from "../hooks/useAuth";
+import { BtnBack } from "../assets/assetsHtml";
+import Carrusel from "../components/Carrusel";
 
 function Auth() {
-  const [form, setForm] = useState(null);
+  let session = sessionStorage.getItem("auth") || false;
 
-  const handleChange = (e) => {
-    if (e.target.value === "") {
-      setForm(null);
-    } else {
-      setForm({
-        ...form,
-        [e.target.name]: e.target.value,
-      });
-    }
+  return (
+    <>
+      {!session && <Login />}
+      {session && <Logout />}
+    </>
+  );
+}
+
+function Logout() {
+  const closeSession = () => {
+    sessionStorage.removeItem("auth");
+    window.location.reload();
   };
 
-  const reset = () => {
-    setForm(null);
-  };
+  return (
+    <>
+      <h2>
+        Ya estas registrado, para registrarte de nuevo pulsa el botón para
+        cerrar sesión
+      </h2>
+      <button className="btn-danger" onClick={closeSession}>
+        Cerrar sesion
+      </button>
+    </>
+  );
+}
+
+function Login() {
+  const [options, setOptions] = useState(false);
 
   const submitForm = (e) => {
     e.preventDefault();
+    setOptions({
+      headers: { "Content-type": "application/json" },
+      body: {
+        Correo: e.target.Correo.value,
+        Password: e.target.Password.value,
+      },
+    });
   };
 
-  const { data, error, errorBody } = useAuth(form);
+  const { data, error, isPending } = useAuth(options);
 
   return (
     <div className="d-flex expand">
-      <div className="wth-80 m-auto wth-max-500px">
+      <div className="wth-90 m-auto wth-max-500px border border-secondary rounded p-2">
+        <Carrusel />
+        <BtnBack type="secondary" />
         <p className="text-center">Inicia sesión</p>
         <form onSubmit={submitForm}>
+          <label htmlFor="Correo">Escribe tu correo</label>
           <input
             className="form-control my-2"
             type="email"
             name="Correo"
+            id="Correo"
             placeholder="correo"
+            autoComplete="off"
             required
-            onChange={handleChange}
           />
+          <label htmlFor="Password">Escribe tu contraseña</label>
           <input
             className="form-control my-2"
             type="password"
             name="Password"
+            id="Password"
             placeholder="contraseña"
+            autoComplete="off"
             required
-            onChange={handleChange}
           />
+          {!error && data && <Success nombre={data.Nombre} />}
+          {error && !isPending && <Error />}
           <button
             className="btn btn-secondary d-block my-1 wth-80 mx-auto"
             type="submit"
-            data-bs-toggle="modal"
-            data-bs-target="#modal"
           >
             <i className="bi bi-door-open-fill"></i> Entrar
           </button>
           <button
             type="reset"
             className="btn btn-primary d-block my-1 mx-auto wth-50"
-            onClick={reset}
           >
             <i className="bi bi-eraser-fill"></i> Limpiar
           </button>
         </form>
-        {!error && data && <Modal user={data[0].Nombre} />}
-        {error && errorBody && <ModalError data={errorBody} />}
       </div>
     </div>
   );
 }
 
-function Modal({ user }) {
-  const home = () => {
-    window.location.href = "/";
-  };
+function Success({ nombre }) {
+  setInterval(() => {
+    window.history.back();
+  }, 1900);
 
   return (
-    <>
-      <div
-        className="modal fade"
-        id="modal"
-        tabIndex="-1"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Hola <span style={{ color: "var(--sv-orange)" }}>{user}</span>
-              </h5>
-            </div>
-            <div className="modal-body">
-              Has iniciado sesión satisfactoriamente
-            </div>
-            <div className="modal-footer">
-              <button className="btn btn-primary" onClick={home}>
-                <i className="bi bi-house-door-fill"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <span style={{ color: "var(--sv-success)" }}>
+      Bienvenido {nombre} en un momento sera redirigido
+    </span>
   );
 }
 
-function ModalError({ data }) {
-  const home = () => {
-    window.location.href = "/";
-  };
-
+function Error() {
   return (
-    <>
-      <div className="modal fade" id="modal" aria-hidden="true" tabIndex="-1">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5>Error {data.status}</h5>
-              <button
-                className="btn-close"
-                data-bs-dismiss="modal"
-                arial-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <h6>
-                {data.status === 400
-                  ? "Me estas dando campos vacios, rellena bien el formulario de sesión"
-                  : "Usuario o contraseña incorrecta"}
-              </h6>
-            </div>
-            <div className="modal-footer">
-              <button className="btn btn-primary" onClick={home}>
-                <i className="bi bi-house-door-fill"></i>
-              </button>
-              <button data-bs-dismiss="modal" className="btn-secondary btn">
-                Intentar de nuevo
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <span style={{ color: "var(--sv-danger)" }}>
+      El usuario o la contraseña son icorrectas, si quieres obtener una cuenta
+      comunicate con el desarrollador de este sistema
+    </span>
   );
 }
 

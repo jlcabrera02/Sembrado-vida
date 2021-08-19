@@ -24,7 +24,6 @@ class RespuestasController{
     }
 
     public function error_405(){
-        $this->response['status'] = "error";
         $this->response['result'] = array(
             "error_id" => "405",
             "error_msg" => "Metodo no permitido"
@@ -62,7 +61,6 @@ class RespuestasController{
     }
 
     public function error_406(){
-        $this->response['status'] = "error";
         $this->response['result'] = array(
             "error_id" => "406",
             "error_msg" => "No se encontro resultados"

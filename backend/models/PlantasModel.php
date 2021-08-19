@@ -40,7 +40,20 @@ class PlantasModel extends Model{
     return $this->query;
   }
 
-  protected function read($id = "") {
+  public function read($id = ""){
+    $this->query = "SELECT * FROM arboles WHERE id_arbol = $id";
+    $this->get_query();
+    
+    $array = [];
+    
+    foreach ($this->rows as $key => $value) {
+      array_push($array, $value);
+    }
+    
+    return $array;
+  }
+
+  protected function get_data($id = "") {
     $this->query = "SELECT arb.id_arbol, arb.Planta, arb.Ncientifico, arb.Categoria, arb.Perfil, SUM(det.Planta_viva) as Total, cac.cac FROM arboles AS arb INNER JOIN detalles AS det INNER JOIN cac AS cac ON det.id_arbol = arb.id_arbol AND arb.cac = cac.id_cac WHERE arb.Cac = $id GROUP BY (arb.id_arbol)";
 
     $this->get_query();
@@ -53,17 +66,19 @@ class PlantasModel extends Model{
     
     return $array;
   }
-  
-  public function getPlanta($id = ""){
-    $this->query = "SELECT * FROM arboles WHERE id_arbol = $id";
+
+  protected function get_planta_cac($id = ""){
+    $this->query = "SELECT arb.*, cac.Cac FROM arboles AS arb INNER JOIN cac as cac WHERE arb.Cac = $id";
+
     $this->get_query();
-    
+
     $array = [];
-    
+
     foreach ($this->rows as $key => $value) {
       array_push($array, $value);
     }
     
     return $array;
+    
   }
 }

@@ -18,14 +18,12 @@ class AuthModel extends Model {
 
     $this->query  = "SELECT * FROM user WHERE Correo = '$Correo' AND Password = MD5('$Password')";
     
-    /* $this->query = "SELECT * from user"; */
-
     $this->get_query();
 
     $array = [];
 
     foreach ($this->rows as $key => $value) {
-      array_push($array, $value);
+      $array = $value;
     }
 
 

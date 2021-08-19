@@ -6,7 +6,7 @@ import { TimeExpired, SinDatos } from "../assets/assetsHtml";
 
 export default function ConteinerCardHome({ id }) {
   const { data, error, isPending, dataError } = useGetData(
-    `/Plantas.php?id=${id}`
+    `/Data.php?id=${id}`
   );
 
   return (

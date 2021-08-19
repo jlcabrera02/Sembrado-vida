@@ -79,7 +79,7 @@ class DetallesModel extends Model{
   private function todo($data){
     foreach ($data as $key => $value) {
       $$key = $value;
-      $this->query = "SELECT det.id_detalle, det.Planta_viva, det.Planta_sembrada, det.Planta_repartida, det.Planta_muerta, det.Fecha_siembra, det.Fecha_repartida, det.Ultima_actualizacion, cac.Cac, arb.Planta, viv.Tipo FROM detalles AS det INNER JOIN arboles AS arb INNER JOIN cac AS cac INNER JOIN viveros as viv ON det.id_arbol = arb.id_arbol AND cac.id_cac = arb.cac AND det.vivero = viv.id_vivero WHERE det.id_arbol = $id";
+      $this->query = "SELECT det.id_detalle, det.Planta_viva, det.Planta_sembrada, det.Planta_repartida, det.Planta_muerta, det.Fecha_siembra, det.Fecha_repartida, det.Ultima_actualizacion, cac.Cac, arb.Planta, viv.Tipo FROM detalles AS det INNER JOIN arboles AS arb INNER JOIN cac AS cac INNER JOIN viveros as viv ON det.id_arbol = arb.id_arbol AND cac.id_cac = arb.cac AND det.vivero = viv.id_vivero WHERE det.id_arbol = $id ORDER BY det.Fecha_siembra DESC";
       return $this->query;
     }
   }
@@ -88,7 +88,7 @@ class DetallesModel extends Model{
     foreach ($data as $key => $value) {
       $$key = $value;
     }
-    $this->query = "SELECT det.id_detalle, det.Planta_viva, det.Planta_sembrada, det.Planta_repartida, det.Planta_muerta, det.Fecha_siembra, det.Fecha_repartida, det.Ultima_actualizacion, cac.Cac, arb.Planta, viv.Tipo FROM detalles AS det INNER JOIN arboles AS arb INNER JOIN cac AS cac INNER JOIN viveros as viv ON det.id_arbol = arb.id_arbol AND cac.id_cac = arb.cac AND det.vivero = viv.id_vivero WHERE det.id_arbol = $id AND det.Vivero = $Vivero ";
+    $this->query = "SELECT det.id_detalle, det.Planta_viva, det.Planta_sembrada, det.Planta_repartida, det.Planta_muerta, det.Fecha_siembra, det.Fecha_repartida, det.Ultima_actualizacion, cac.Cac, arb.Planta, viv.Tipo FROM detalles AS det INNER JOIN arboles AS arb INNER JOIN cac AS cac INNER JOIN viveros as viv ON det.id_arbol = arb.id_arbol AND cac.id_cac = arb.cac AND det.vivero = viv.id_vivero WHERE det.id_arbol = $id AND det.Vivero = $Vivero ORDER BY det.Fecha_siembra DESC";
     return $this->query;
   }
 

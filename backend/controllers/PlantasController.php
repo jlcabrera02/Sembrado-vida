@@ -11,9 +11,9 @@ class PlantasController extends PlantasModel {
     }else{
       return $get;
     }
-  } 
+  }
 
-  public function postPlantas ($data) {
+  public function post_plantas ($data) {
     $session = new AuthController;
     $respuestas  = new RespuestasController();
     $json = json_decode($data, true);
@@ -49,7 +49,7 @@ class PlantasController extends PlantasModel {
     }
   }
   
-  public function putPlantas ($data) {
+  public function put_plantas ($data) {
     $session = new AuthController;
     $respuestas  = new RespuestasController();
     $json = json_decode($data, true);
@@ -85,7 +85,7 @@ class PlantasController extends PlantasModel {
       }
     }
     
-    public function deletePlantas($data){
+    public function delete_plantas($data){
       $session = new AuthController;
       $respuestas  = new RespuestasController();
       $json = json_decode($data, true);
@@ -113,5 +113,29 @@ class PlantasController extends PlantasModel {
         return $respuestas->error_403();
       }
     }
+  }
+
+  /*Funciones extras*/
+  public function data($id){
+    $respuestas  = new RespuestasController();
+    /*El parametro id traera el total de cada planta que hay en el cac selecionado por el id*/
+    $get = $this->get_data($id);
+    if (empty($get)){
+      return $respuestas->error_406();
+    }else{
+      return $get;
+    }
+  }
+  
+  public function data_planta($id){
+    /*Obtiene las plantas totales de cada Cac*/
+    $respuestas  = new RespuestasController();
+    $get = $this->get_planta_cac($id);
+    if (empty($get)){
+      return $respuestas->error_406();
+    }else{
+      return $get;
+    }
+    
   }
 }

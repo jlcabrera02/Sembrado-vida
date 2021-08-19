@@ -1,7 +1,22 @@
 import React from "react";
 import Card from "../components/Card";
-import { IconX, Reloj } from "../components/Icons";
+import { ArrowLeftCircleFill, IconX, Reloj } from "../components/Icons";
 import Error from "./Error.svg";
+
+export function BtnBack({ type }) {
+  const btnAction = (e) => {
+    window.history.back();
+  };
+
+  return (
+    <button
+      className={`btn btn-${type} p-0 rounded-circle m-2`}
+      onClick={btnAction}
+    >
+      <ArrowLeftCircleFill fill="white" />
+    </button>
+  );
+}
 
 export function ErrorGlobal({ msg }) {
   return (

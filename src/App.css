@@ -34,10 +34,6 @@
   border-radius: 0 0 15px 15px;
 }
 
-.carrusel {
-  width: 600px;
-}
-
 .gradient {
   width: 100%;
   height: 100%;
@@ -118,17 +114,9 @@
   left: 0;
 }
 
-.carrusel {
-  width: 600px;
-}
-
 @media screen and (max-width: 700px) {
   .cabecera-detalle {
     height: 90px;
-  }
-
-  .carrusel {
-    width: 100%;
   }
 
   .error-404 {
