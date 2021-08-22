@@ -41,13 +41,17 @@ class PlantasModel extends Model{
   }
 
   public function read($id = ""){
-    $this->query = "SELECT * FROM arboles WHERE id_arbol = $id";
+    //$this->query = "SELECT arb.Planta, arb.Ncientifico, arb.Perfil, arb.Alt, arb.Categoria, cac.Cac, SUM(det.Planta_viva) as Total FROM arboles AS arb INNER JOIN Cac AS cac INNER JOIN detalles AS det ON cac.id_cac = arb.Cac AND det.id_arbol = arb.id_arbol WHERE arb.id_arbol = $id GROUP BY (arb.id_arbol)";
+
+    $this->query = "SELECT arb.Planta, arb.Ncientifico, arb.Perfil, arb.Alt, arb.Categoria, cac.Cac, IFNULL(SUM(CASE WHEN det.Planta_viva > 0 THEN det.Planta_viva ELSE 0 END),0) AS Total FROM arboles AS arb INNER JOIN Cac AS cac INNER JOIN detalles AS det ON cac.id_cac = arb.Cac AND det.id_arbol = arb.id_arbol WHERE arb.id_arbol = $id";
+
     $this->get_query();
     
     $array = [];
     
     foreach ($this->rows as $key => $value) {
       array_push($array, $value);
+      //$array = $value;
     }
     
     return $array;

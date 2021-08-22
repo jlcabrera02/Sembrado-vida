@@ -10,7 +10,7 @@ class DetallesModel extends Model{
 
     $Planta_viva = $data["Planta_sembrada"];
 
-    $this->query = "INSERT INTO detalles (id_arbol, Planta_viva, Planta_sembrada, Fecha_siembra, Ultima_actualizacion) VALUES ('$id_arbol', '$Planta_viva', '$Planta_sembrada', '$Fecha_siembra', CURRENT_TIME)";
+    $this->query = "INSERT INTO detalles (id_arbol, Planta_viva, Vivero, Planta_sembrada, Fecha_siembra, Ultima_actualizacion) VALUES ('$id_arbol', '$Planta_viva', '$Vivero', '$Planta_sembrada', '$Fecha_siembra', CURRENT_TIME)";
     
 
     $this->set_query();

@@ -3,6 +3,7 @@ require_once "Autoload.php";
 $Autoload = new Autoload;
 
 header("Content-type: application/json");
+header("Access-Control-Allow-Origin: *");
 $plantas = new PlantasController;
 $respuestas = new RespuestasController;
 

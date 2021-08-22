@@ -76,6 +76,12 @@
   min-width: 200px;
 }
 
+.header-event {
+  color: white;
+  background-color: var(--sv-purple);
+  font-family: "Chango";
+}
+
 .img-planta {
   height: 110px;
   width: 110px;

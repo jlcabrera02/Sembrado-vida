@@ -1,17 +1,18 @@
 import React from "react";
 import CardDetalles from "./CardDetalles";
 import { SinDatos } from "../assets/assetsHtml";
+import { useHistory } from "react-router";
 import useGetData from "../hooks/useGetData";
 import Loader from "./Loader";
 
 export default function ConteinerCardDetalles({ id, vivero }) {
+  let history = useHistory();
   const { data, error, isPending, dataError } = useGetData(
     `/Detalles.php?id=${id}${vivero}`
   );
 
   const clickBtn = () => {
-    sessionStorage.setItem("planta", id);
-    window.location.href = "/asignar-planta";
+    history.push("/asignar-planta");
   };
 
   return (

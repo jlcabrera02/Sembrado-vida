@@ -26,6 +26,7 @@ class DetallesController extends DetallesModel {
       || !isset($json["Fecha_siembra"])
       || !isset($json["Correo"])
       || !isset($json["Password"])
+      || !isset($json["Vivero"])
     ) {
       return $respuestas->error_400();
     }else{

@@ -28,7 +28,7 @@ export function ErrorGlobal({ msg }) {
         type="button"
         className="btn btn-info mx-auto d-block my-3"
       >
-        <i class="bi bi-arrow-clockwise"></i> Recargar
+        <i className="bi bi-arrow-clockwise"></i> Recargar
       </button>
     </>
   );
