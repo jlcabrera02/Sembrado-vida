@@ -58,7 +58,7 @@ class DetallesModel extends Model{
     foreach ($data as $key => $value) {
       $$key = $value;
     }
-
+    /*Aquí solo necesitamos pasar dos parametros: $Planta_repartida y $Fecha_repartida es todo!!!*/
     $Planta_viva = $Cantidad - $Planta_repartida;
 
     $this->query = "UPDATE Detalles SET Planta_viva = $Planta_viva, Planta_repartida = '$Planta_repartida', Fecha_repartida = '$Fecha_repartida', Ultima_actualizacion = CURRENT_TIME WHERE id_detalle = $id";

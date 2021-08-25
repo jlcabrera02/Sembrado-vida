@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "./Card";
 import { CircleFill } from "./Icons";
+import { ModalPutMatar } from "./Modals";
 
-export default function CardDetalles({ data, fill }) {
+export default function CardDetalles({ data }) {
+  let fill = "var(--sv-purple)";
   const {
     Planta_viva,
     Tipo,
@@ -14,10 +16,13 @@ export default function CardDetalles({ data, fill }) {
     Cac,
     //Planta,
     Ultima_actualizacion,
-    //id_detalle,
+    id_detalle,
   } = data;
+  let session = JSON.parse(sessionStorage.getItem("auth")) || false,
+    auth = { Correo: session.Correo, Password: session.Password };
+
   const convertTime = (time) => {
-    return new Date(`${time} `).toLocaleDateString();
+    return new Date(`${time} 00:00:00`).toLocaleDateString();
   };
 
   const time = (date) => {
@@ -54,6 +59,8 @@ export default function CardDetalles({ data, fill }) {
     }
   };
 
+  if (Number.parseInt(Planta_repartida) > 0) fill = "var(--sv-orange)";
+
   return (
     <Card borderColor={fill}>
       <CircleFill size="20" fill={fill} />
@@ -86,6 +93,11 @@ export default function CardDetalles({ data, fill }) {
       )}
       {!Fecha_repartida && <br />}
 
+      {session && <Button></Button>}
+      <ModalPutMatar>
+        <FormRepartir id={id_detalle} auth={auth}></FormRepartir>
+      </ModalPutMatar>
+
       <p className="text-center">
         Ultima Actualización: <br />{" "}
         <em style={{ color: fill }}>hace {time(Ultima_actualizacion)}</em>
@@ -115,6 +127,57 @@ P.defaultProps = {
   color: "green",
 };
 
-CardDetalles.defaultProps = {
-  fill: "var(--sv-purple)",
-};
+function Button() {
+  return (
+    <button
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      className="btn btn-danger"
+    >
+      Matar
+    </button>
+  );
+}
+
+function FormMatar() {
+  return (
+    <form method="PUT" className="bg-danger">
+      <input type="number" placeholder="¿Cuantas plantas no sobrevivieron?" />
+      <input type="submit" value="Matar" />
+    </form>
+  );
+}
+
+function FormRepartir({ id, auth }) {
+  const [idDetalle, setIdDetalle] = useState();
+  setIdDetalle(id);
+  const actualizar = (e) => {
+    e.preventDefault();
+    const options = {
+      headers: { "Content-type": "application/json" },
+      body: {
+        id,
+        Update: "Repartir",
+        ...auth,
+        Planta_repartida: e.target.Repartir.value,
+        Fecha_repartida: e.target.Date.value,
+      },
+    };
+
+    console.log(options);
+  };
+  return (
+    <form method="PUT" onSubmit={actualizar}>
+      <input
+        type="number"
+        name="Repartir"
+        placeholder="¿Cuantas plantas repartieron por persona?"
+      />
+      <br />
+      <input type="date" name="Date" />
+      <br />
+      <input type="submit" className="btn btn-danger" value="Repartir" />
+    </form>
+  );
+}

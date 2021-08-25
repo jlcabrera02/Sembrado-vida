@@ -8,7 +8,6 @@ import useGetData from "../hooks/useGetData";
 export default function Home() {
   const [id, setId] = useState(1);
   const { data, error, isPending } = useGetData("/Cac.php");
-
   return (
     <>
       {!error && <Header />}

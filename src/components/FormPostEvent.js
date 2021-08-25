@@ -39,7 +39,7 @@ function FormPostEvent({ auth }) {
 function BodyForm({ post }) {
   const [viv, setViv] = useState("siembra");
 
-  const { data, error, isPending, dataError } = post;
+  const { isPending } = post;
 
   return (
     <>
@@ -142,4 +142,5 @@ function BtnSubmit({ isPending }) {
     </>
   );
 }
+
 export default FormPostEvent;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { BtnBack, SinDatos } from "../assets/assetsHtml";
-import DetallesMenu from "../components/DetallesMenu";
+import MenuDetalles from "../components/MenuDetalles";
 import HeaderDetalles from "../components/HeaderDetalles";
 import ConteinerCardDetalles from "../components/ConteinerCardDetalles";
 import useGetData from "../hooks/useGetData";
@@ -25,7 +25,7 @@ export default function Detalles() {
     <>
       {data && !isPending && <HeaderDetalles data={data} />}
       {data && !isPending && (
-        <DetallesMenu data={data} setTypeVivero={setTypeVivero} />
+        <MenuDetalles data={data} setTypeVivero={setTypeVivero} />
       )}
       {data && !isPending && (
         <ConteinerCardDetalles id={plantaId} vivero={typeVivero} />

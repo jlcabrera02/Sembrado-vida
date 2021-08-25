@@ -6,7 +6,7 @@ export default function Card({ children, borderColor }) {
   };
 
   return (
-    <figure className="card-home d-block" style={style}>
+    <figure className="card-home d-block m-1" style={style}>
       {children}
     </figure>
   );

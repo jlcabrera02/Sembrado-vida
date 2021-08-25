@@ -3,7 +3,7 @@ import Pointing from "./Pointing";
 import { InputFormDetalle } from "./InputForm";
 import { BtnBack } from "../assets/assetsHtml";
 
-export default function DetallesMenu({ data, setTypeVivero }) {
+function MenuDetalles({ data, setTypeVivero }) {
   return (
     <div className="header-detalles-nav mt-2">
       <div className="d-flex align-items-center">
@@ -22,3 +22,5 @@ export default function DetallesMenu({ data, setTypeVivero }) {
     </div>
   );
 }
+
+export default MenuDetalles;
