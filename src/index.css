@@ -17,6 +17,7 @@
   --sv-white: #fff;
   --sv-gray: #6c757d;
   --sv-gray-dark: #343a40;
+  --sv-green-700: #348900;
   --sv-primary: #57e500;
   --sv-secondary: #00e5ca;
   --sv-success: #57e500;
@@ -7229,6 +7230,11 @@ textarea.form-control-lg {
 .text-gray-dark {
   color: var(--sv-gray-dark);
   fill: var(--sv-gray-dark);
+}
+
+.text-green-700 {
+  color: var(--sv-green-700);
+  fill: var(--sv-green-700);
 }
 
 /*# sourceMappingURL=index.css.map */

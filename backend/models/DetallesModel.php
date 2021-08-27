@@ -22,6 +22,8 @@ class DetallesModel extends Model{
       $this->repartir($data);
     }elseif ($data['Update'] == "Matar") {
       $this->matar($data);
+    }else if ($data['Update'] == "Status"){
+      $this->status($data);
     }
 
     $this->set_query();
@@ -75,11 +77,21 @@ class DetallesModel extends Model{
     $this->query = "UPDATE Detalles SET Planta_viva = $Planta_viva, Planta_muerta = $Planta_muerta, Ultima_actualizacion = CURRENT_TIME WHERE id_detalle = $id";
     return $this->query;
   }
+
+  private function status($data){
+    foreach ($data as $key => $value) {
+      $$key = $value;
+    }
+
+    $this->query = "UPDATE Detalles SET Fase = $Fase WHERE id_detalle = $id";
+
+    return $this->query;
+  }
   
   private function todo($data){
     foreach ($data as $key => $value) {
       $$key = $value;
-      $this->query = "SELECT det.id_detalle, det.Planta_viva, det.Planta_sembrada, det.Planta_repartida, det.Planta_muerta, det.Fecha_siembra, det.Fecha_repartida, det.Ultima_actualizacion, cac.Cac, arb.Planta, viv.Tipo FROM detalles AS det INNER JOIN arboles AS arb INNER JOIN cac AS cac INNER JOIN viveros as viv ON det.id_arbol = arb.id_arbol AND cac.id_cac = arb.cac AND det.vivero = viv.id_vivero WHERE det.id_arbol = $id ORDER BY det.Fecha_siembra DESC";
+      $this->query = "SELECT det.id_detalle, det.Planta_viva, det.Planta_sembrada, det.Planta_repartida, det.Planta_muerta, det.Fecha_siembra, det.Fecha_repartida, det.Ultima_actualizacion, cac.Cac, arb.Planta, viv.Tipo, det.Fase FROM detalles AS det INNER JOIN arboles AS arb INNER JOIN cac AS cac INNER JOIN viveros as viv ON det.id_arbol = arb.id_arbol AND cac.id_cac = arb.cac AND det.vivero = viv.id_vivero WHERE det.id_arbol = $id ORDER BY det.Fecha_siembra DESC";
       return $this->query;
     }
   }
@@ -88,7 +100,7 @@ class DetallesModel extends Model{
     foreach ($data as $key => $value) {
       $$key = $value;
     }
-    $this->query = "SELECT det.id_detalle, det.Planta_viva, det.Planta_sembrada, det.Planta_repartida, det.Planta_muerta, det.Fecha_siembra, det.Fecha_repartida, det.Ultima_actualizacion, cac.Cac, arb.Planta, viv.Tipo FROM detalles AS det INNER JOIN arboles AS arb INNER JOIN cac AS cac INNER JOIN viveros as viv ON det.id_arbol = arb.id_arbol AND cac.id_cac = arb.cac AND det.vivero = viv.id_vivero WHERE det.id_arbol = $id AND det.Vivero = $Vivero ORDER BY det.Fecha_siembra DESC";
+    $this->query = "SELECT det.id_detalle, det.Planta_viva, det.Planta_sembrada, det.Planta_repartida, det.Planta_muerta, det.Fecha_siembra, det.Fecha_repartida, det.Ultima_actualizacion, cac.Cac, arb.Planta, viv.Tipo, det.Fase FROM detalles AS det INNER JOIN arboles AS arb INNER JOIN cac AS cac INNER JOIN viveros as viv ON det.id_arbol = arb.id_arbol AND cac.id_cac = arb.cac AND det.vivero = viv.id_vivero WHERE det.id_arbol = $id AND det.Vivero = $Vivero ORDER BY det.Fecha_siembra DESC";
     return $this->query;
   }
 

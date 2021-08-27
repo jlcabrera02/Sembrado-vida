@@ -18,6 +18,15 @@ $font-family-sans-serif: "Cagliostro";
 @import "../node_modules/bootstrap/scss/mixins";
 /*Aquí comienzan los valores agregados a los mapas*/
 
+$myColors: (
+  "green-700": $green-700,
+);
+
+$colors: map-merge(
+  $map1: $colors,
+  $map2: $myColors,
+);
+
 $myThemes: (
   "tm-orange": $orange,
   "tm-yellow": $yellow,
