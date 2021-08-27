@@ -46,7 +46,6 @@
 }
 
 .card-home {
-  border: thin solid;
   width: 250px;
   border-radius: 20px;
   padding: 10px;
@@ -63,6 +62,10 @@
 
 .detalle-btn:hover {
   filter: brightness(50%);
+}
+
+.ffamily-chango {
+  font-family: "Chango";
 }
 
 .header-detalles-nav {

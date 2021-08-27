@@ -15,8 +15,8 @@ function Circle({ fill, msg }) {
 export default function Pointing({ icon }) {
   return (
     <div className="pointing">
-      <Circle fill="var(--sv-purple)" msg="En vivero" />
-      <Circle fill="var(--sv-orange)" msg="Repartido" />
+      <Circle fill="purple" msg="En vivero" />
+      <Circle fill="orange" msg="Repartido" />
     </div>
   );
 }

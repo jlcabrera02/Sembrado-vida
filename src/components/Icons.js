@@ -50,15 +50,14 @@ export function ArrowLeftCircleFill({ size, fill, center }) {
 
 export function CircleFill({ size, fill, center }) {
   let centrado = center
-    ? "bi bi-circle-fill d-block m-auto"
-    : "bi bi-circle-fill m-2";
+    ? `bi bi-circle-fill d-block m-auto text-${fill}`
+    : `bi bi-circle-fill m-2 text-${fill}`;
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      fill={fill}
       className={centrado}
       viewBox="0 0 16 16"
     >
@@ -136,7 +135,7 @@ ArrowLeftCircleFill.defaultProps = {
 };
 CircleFill.defaultProps = {
   size: "50",
-  fill: "#000",
+  fill: "gray",
 };
 Reloj.defaultProps = {
   fill1: "#57e500",

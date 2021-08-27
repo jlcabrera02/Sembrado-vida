@@ -11,29 +11,59 @@ $yellow: #e3a503;
 $primary: $green;
 $secondary: $blue;
 $success: $green;
-$info: $purple;
 $font-family-sans-serif: "Cagliostro";
-@import "../node_modules/bootstrap/scss/bootstrap";
 
-@for $i from 1 to 10 {
-  .wth-#{$i *10} {
-    width: #{$i * 10%};
-  }
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+/*Aquí comienzan los valores agregados a los mapas*/
 
-  .hgt-#{$i *10} {
-    height: #{$i * 10%};
-  }
+$myThemes: (
+  "tm-orange": $orange,
+  "tm-yellow": $yellow,
+  "tm-purple": $purple,
+);
 
-  .wth-max-#{$i *100}px {
-    max-width: #{$i * 100}px;
-  }
-}
+$theme-colors: map-merge($theme-colors, $myThemes);
 
+/*Aquí termina el apartado de mapas*/
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/root";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/carousel";
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/modal";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/utilities/api";
+
+/*Me da los widths y heigths de acuerdo a mis necesidades en px o en %*/
 @for $i from 1 to 15 {
+  @if $i < 11 {
+    .wth-#{$i *10} {
+      width: #{$i * 10%};
+    }
+
+    .hgt-#{$i *10} {
+      height: #{$i * 10%};
+    }
+
+    .wth-max-#{$i *100}px {
+      max-width: #{$i * 100}px;
+    }
+  }
+
   .wth-#{$i * 100}px {
     width: #{$i * 100}px;
   }
   .hgt-#{$i * 100}px {
     height: #{$i * 100}px;
+  }
+}
+
+/*Me arroja en forma de clases los colores del texto*/
+@each $key, $value in $colors {
+  .text-#{$key} {
+    color: var(--#{$variable-prefix}#{$key});
+    fill: var(--#{$variable-prefix}#{$key});
   }
 }

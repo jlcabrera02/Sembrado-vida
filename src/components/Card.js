@@ -1,17 +1,13 @@
 import React from "react";
 
-export default function Card({ children, borderColor }) {
-  const style = {
-    borderColor,
-  };
-
+export default function Card({ children, border }) {
   return (
-    <figure className="card-home d-block m-1" style={style}>
+    <figure className={`card-home d-block m-1 border border-${border}`}>
       {children}
     </figure>
   );
 }
 
 Card.defaultProps = {
-  borderColor: "000",
+  border: "dark",
 };
