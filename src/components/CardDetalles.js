@@ -12,11 +12,14 @@ function CardDetalles({ data }) {
       <Card border={`tm-${exist}`}>
         <CircleFill size="20" fill={exist} />
 
-        <h2 className={`text-${exist} text-center`}>{data.Planta_viva}</h2>
-
-        <EstatusPlanta fase={data.Fase} />
+        <h2 className={`text-${exist} text-center`}>
+          <span style={{ fontSize: "0.6rem" }}>Total</span>
+          <br />
+          {data.Planta_viva}
+        </h2>
 
         <BodyCardsDetalles data={data} />
+        <EstatusPlanta fase={data.Fase} />
 
         <div className="text-center bg-light border rounded-pill mt-2">
           Ultima actualización:

@@ -40,7 +40,7 @@ function BodyCardsDetalles({ data }) {
       <p className="m-0">
         Fecha de reparto:{" "}
         {Fecha_repartida && (
-          <span className="text-green">
+          <span className="text-orange">
             {new Date(`${Fecha_repartida} 00:00:00`).toLocaleDateString()}
           </span>
         )}
@@ -59,7 +59,6 @@ export function EstatusPlanta({ fase }) {
 
   return (
     <div>
-      <p className="text-green-700 text-center m-0">Estatus</p>
       <div className="d-flex justify-content-evenly">
         <div className="d-flex flex-column align-items-center">
           <span className={`text-${faseColor[fasec]}`}>semilla</span>
@@ -84,21 +83,20 @@ export function FormStatusPlanta({ fase, id, handleRadio }) {
     );
   }, [fase]);
 
-  const handleLocaleRadio = () => {
-    handleRadio(id);
+  const handleLocaleRadio = (e) => {
+    handleRadio(id, e.target.value);
   };
 
   return (
     <form method="PUT" ref={formu}>
-      <p className="text-green-700 text-center m-0">Estatus</p>
       <div className="d-flex justify-content-evenly">
         <div className="d-flex flex-column align-items-center">
           <label>Semilla</label>
           <input
             type="radio"
             name="statusPlanta"
-            value="0"
-            onChange={handleRadio}
+            value="1"
+            onChange={handleLocaleRadio}
           />
         </div>
         <div className="d-flex flex-column align-items-center">
@@ -106,7 +104,7 @@ export function FormStatusPlanta({ fase, id, handleRadio }) {
           <input
             type="radio"
             name="statusPlanta"
-            value="1"
+            value="2"
             onChange={handleLocaleRadio}
           />
         </div>

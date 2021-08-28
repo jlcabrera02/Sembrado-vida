@@ -4,51 +4,60 @@ import BodyCardsDetalles, { FormStatusPlanta } from "./BodyCardsDetalles";
 import { CircleFill } from "./Icons";
 import { time } from "../helpers/helpUtilities";
 
-function CardDetallesAdmin({ data, setFormBody, handleRadio }) {
-  let option = Number.parseInt(data.Planta_repartida) > 0 ? "orange" : "purple";
+function CardDetallesAdmin({ data, handleRadio, put }) {
+  let exist = Number.parseInt(data.Planta_repartida) > 0 ? "orange" : "purple";
+  const setInformation = (e) => {
+    const options = {
+      id: data.id_detalle,
+      Update: e.target.ariaLabel,
+      Plantas: data.Planta_viva,
+    };
 
-  const matarPlanta = () => {
-    setFormBody({
-      id: data.id_detalle,
-      Update: "Matar",
-    });
-  };
-  const repartirPlanta = () => {
-    setFormBody({
-      id: data.id_detalle,
-      Update: "Repartir",
-    });
+    put(options);
   };
 
   return (
     <>
-      <Card border={`tm-${option}`}>
+      <Card border={`tm-${exist}`}>
         <div className="d-flex justify-content-between">
-          <CircleFill size="20" fill={option} />
-          <button className="btn text-red">
+          <CircleFill size="20" fill={exist} />
+          <button
+            className="btn text-red"
+            data-bs-toggle="modal"
+            data-bs-target="#delete"
+            onClick={setInformation}
+          >
             <i className="bi bi-trash"></i>
           </button>
         </div>
 
-        <h2 className={`text-${option} text-center`}>{data.Planta_viva}</h2>
+        <h2 className={`text-${exist} text-center`}>
+          <span style={{ fontSize: "0.6rem" }}>Total</span>
+          <br />
+          {data.Planta_viva}
+        </h2>
 
+        <BodyCardsDetalles data={data} />
         <FormStatusPlanta
           fase={data.Fase}
           id={data.id_detalle}
           handleRadio={handleRadio}
         />
 
-        <BodyCardsDetalles data={data} />
-
         <button
           className="btn btn-tm-yellow mx-auto my-1 d-block"
-          onClick={matarPlanta}
+          data-bs-toggle="modal"
+          aria-label="Matar"
+          data-bs-target="#matar"
+          onClick={setInformation}
         >
           Matar plantas
         </button>
+
         <button
           className="btn btn-tm-orange mx-auto my-1 d-block"
-          onClick={repartirPlanta}
+          aria-label="Repartir"
+          onClick={setInformation}
         >
           Repartir plantas
         </button>
@@ -56,7 +65,7 @@ function CardDetallesAdmin({ data, setFormBody, handleRadio }) {
         <div className="text-center bg-light border rounded-pill mt-2">
           Ultima actualización:
           <br />
-          <span className={`text-${option}`}>
+          <span className={`text-${exist}`}>
             hace {time(data.Ultima_actualizacion)}
           </span>
           <br />

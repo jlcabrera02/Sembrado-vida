@@ -41,12 +41,12 @@ export default function helpHttp() {
 
   const put = (url, options = {}) => {
     options.method = "PUT";
-    customFetch(`${host}${url}`, options);
+    return customFetch(`${host}${url}`, options);
   };
 
   const del = (url, options = {}) => {
     options.method = "DELETE";
-    customFetch(`${host}${url}`, options);
+    return customFetch(`${host}${url}`, options);
   };
 
   return {
