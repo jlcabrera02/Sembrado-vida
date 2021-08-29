@@ -4,18 +4,16 @@ import BodyCardsDetalles, { FormStatusPlanta } from "./BodyCardsDetalles";
 import { CircleFill } from "./Icons";
 import { time } from "../helpers/helpUtilities";
 
-function CardDetallesAdmin({ data, handleRadio, put }) {
+function CardDetallesAdmin({ data, handleRadio, auth, setOptions }) {
   let exist = Number.parseInt(data.Planta_repartida) > 0 ? "orange" : "purple";
-  const setInformation = (e) => {
-    const options = {
+  const info = {
+    headers: { "Content-type": "application/json" },
+    body: {
+      ...auth,
       id: data.id_detalle,
-      Update: e.target.ariaLabel,
       Plantas: data.Planta_viva,
-    };
-
-    put(options);
+    },
   };
-
   return (
     <>
       <Card border={`tm-${exist}`}>
@@ -25,7 +23,7 @@ function CardDetallesAdmin({ data, handleRadio, put }) {
             className="btn text-red"
             data-bs-toggle="modal"
             data-bs-target="#delete"
-            onClick={setInformation}
+            onClick={(e) => setOptions({ ...info })}
           >
             <i className="bi bi-trash"></i>
           </button>
@@ -49,7 +47,15 @@ function CardDetallesAdmin({ data, handleRadio, put }) {
           data-bs-toggle="modal"
           aria-label="Matar"
           data-bs-target="#matar"
-          onClick={setInformation}
+          onClick={(e) =>
+            setOptions({
+              headers: { ...info.headers },
+              body: {
+                ...info.body,
+                Update: "Matar",
+              },
+            })
+          }
         >
           Matar plantas
         </button>
@@ -57,7 +63,17 @@ function CardDetallesAdmin({ data, handleRadio, put }) {
         <button
           className="btn btn-tm-orange mx-auto my-1 d-block"
           aria-label="Repartir"
-          onClick={setInformation}
+          data-bs-toggle="modal"
+          data-bs-target="#repartir"
+          onClick={(e) =>
+            setOptions({
+              headers: { ...info.headers },
+              body: {
+                ...info.body,
+                Update: "Repartir",
+              },
+            })
+          }
         >
           Repartir plantas
         </button>

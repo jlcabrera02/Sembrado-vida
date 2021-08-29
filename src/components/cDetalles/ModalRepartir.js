@@ -1,24 +1,21 @@
 import React from "react";
 import helpHttp from "../../helpers/helpHttp";
-/* import ModalSucess from "./ModalSucess";
-import ModalError from "./ModalError"; */
 import { ModalDom, ModalHeader, ModalBody } from "../Modals";
 import { Modal } from "bootstrap";
 
-function ModalMatar({ options, modal, modalError, modalSuccess }) {
-  const matar = (e) => {
+function ModalRepartir({ options, modalSuccess, modalError, modal }) {
+  const repartir = (e) => {
     e.preventDefault();
     e.target[1].disabled = true;
 
     const option = {
       headers: { ...options.headers },
       body: {
-        Planta_muerta: e.target.cantidad.value,
+        Planta_repartida: e.target.cantidad.value,
+        Fecha_repartida: e.target.fecha.value,
         ...options.body,
       },
     };
-
-    console.log(option);
 
     helpHttp()
       .put("/Detalles.php", option)
@@ -28,16 +25,16 @@ function ModalMatar({ options, modal, modalError, modalSuccess }) {
           window.location.reload()
         );
       })
-      .catch(() => {
+      .catch((err) => {
         new Modal(modalError.current).show();
       });
   };
 
   return (
     <>
-      <ModalDom idSelect="matar" centered ref={modal}>
+      <ModalDom idSelect="repartir" centered ref={modal}>
         <ModalHeader>
-          <h5 className="text-yellow">¿Cúantas plantas no sobrevivieron?</h5>
+          <h5 className="text-orange">¿Cúantas plantas repartieron?</h5>
           <button
             type="button"
             className="btn btn-close"
@@ -46,8 +43,8 @@ function ModalMatar({ options, modal, modalError, modalSuccess }) {
           ></button>
         </ModalHeader>
         <ModalBody>
-          <form method="PUT" onSubmit={matar} className="wth-50 m-auto">
-            <div className="form-floating">
+          <form method="PUT" onSubmit={repartir} className="wth-50 m-auto">
+            <div className="form-floating my-2">
               <input
                 type="number"
                 className="form-control"
@@ -56,14 +53,26 @@ function ModalMatar({ options, modal, modalError, modalSuccess }) {
                 placeholder="plantas"
                 min="0"
                 max={options ? options.body.Plantas : "2"}
+                required
               />
-              <label htmlFor="number">Plantas Muertas</label>
+              <label htmlFor="number">Plantas repartida</label>
+            </div>
+            <div className="form-floating my-2">
+              <input
+                type="date"
+                name="fecha"
+                id="fecha"
+                placeholder="fecha"
+                className="form-control"
+                required
+              />
+              <label htmlFor="fecha">Fecha de reparto</label>
             </div>
             <input
               type="submit"
-              value="matar"
+              value="repartir"
               data-bs-dismiss="modal"
-              className="btn btn-warning my-3 mx-auto d-block"
+              className="btn btn-tm-orange my-3 mx-auto d-block"
             />
           </form>
         </ModalBody>
@@ -72,4 +81,4 @@ function ModalMatar({ options, modal, modalError, modalSuccess }) {
   );
 }
 
-export default ModalMatar;
+export default ModalRepartir;

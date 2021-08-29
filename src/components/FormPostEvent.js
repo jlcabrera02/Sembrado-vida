@@ -5,6 +5,7 @@ import loader from "../assets/loader.svg";
 
 function FormPostEvent({ auth }) {
   const [form, setForm] = useState({});
+  const post = usePostData(form);
 
   const addDetalle = (e) => {
     e.preventDefault();
@@ -20,12 +21,7 @@ function FormPostEvent({ auth }) {
         },
       },
     });
-    if (post.isPending) {
-      e.target[3].innerHTML = `<img src="${loader}" alt="Cargando...">`;
-    }
   };
-
-  const post = usePostData(form);
 
   return (
     <>
@@ -39,14 +35,28 @@ function FormPostEvent({ auth }) {
 function BodyForm({ post }) {
   const [viv, setViv] = useState("siembra");
 
-  const { isPending } = post;
+  const { data, error, isPending } = post;
 
   return (
     <>
       <Planta />
       <Vivero set={setViv} />
       <Fecha viv={viv} />
-      <BtnSubmit isPending={isPending} />
+      <BtnSubmit isPending={isPending} error={error} />
+      {error && !isPending && (
+        <p className="text-red text-center">Error al insetar los datos</p>
+      )}
+      {error && !isPending && (
+        <button
+          className="btn btn-primary d-block mx-auto"
+          onClick={(e) => window.location.reload()}
+        >
+          Intentar de nuevo
+        </button>
+      )}
+      {data && !isPending && (
+        <p className="text-green text-center">Planta agregada correctamente</p>
+      )}
     </>
   );
 }
@@ -128,19 +138,18 @@ function Fecha({ viv }) {
   );
 }
 
-function BtnSubmit({ isPending }) {
+function BtnSubmit({ isPending, error }) {
   return (
     <>
       <button
         type="submit"
         className="mx-auto btn btn-info my-3 wth-80 d-block"
         name="Submit"
-        disabled={isPending}
+        disabled={isPending || error}
       >
-        Agregar
+        {isPending ? <img src={loader} alt="Cargando..." /> : "Agregar"}
       </button>
     </>
   );
 }
-
 export default FormPostEvent;

@@ -6,11 +6,10 @@ import useGetData from "../hooks/useGetData";
 import Loader from "./Loader";
 import CardDetallesAdmin from "./CardDetallesAdmin";
 import helpHttp from "../helpers/helpHttp";
-import { Modal, ModalBody, ModalFooter } from "./Modals";
-import ModalMatar from "./cDetalles/ModalMatar";
+import ModalIndex from "./cDetalles/ModalIndex";
 
 export default function ConteinerCardDetalles({ id, vivero }) {
-  const [options, setOptions] = useState({});
+  const [options, setOptions] = useState(null);
   const { data, error, isPending, dataError } = useGetData(
     `/Detalles.php?id=${id}${vivero}`
   );
@@ -39,12 +38,12 @@ export default function ConteinerCardDetalles({ id, vivero }) {
       .catch((err) => console.log(err));
   };
 
-  const put = (data) => {
+  /* const put = (data) => {
     setOptions({
       headers: { "Content-type": "application/json" },
       body: { ...data, ...authCredencials },
     });
-  };
+  }; */
 
   return (
     <>
@@ -66,27 +65,14 @@ export default function ConteinerCardDetalles({ id, vivero }) {
             <CardDetallesAdmin
               data={el}
               key={el.id_detalle}
-              auth={auth}
               handleRadio={handleRadio}
-              put={put}
+              auth={authCredencials}
+              setOptions={setOptions}
             />
           ))}
       </div>
-      {/*Modals*/}
-      <ModalMatar options={options} />
-      <ModalDelete />
+      {/*Modals lanza un modal deacuerdo al boton que ejecute*/}
+      <ModalIndex options={options} />
     </>
-  );
-}
-
-function ModalDelete() {
-  return (
-    <Modal idSelect="delete" centered>
-      <ModalBody>¿Estas seguro que deseas eliminar este elemento?</ModalBody>
-      <ModalFooter>
-        <button className="btn btn-primary">Cancelar</button>
-        <button className="btn btn-secondary">Si</button>
-      </ModalFooter>
-    </Modal>
   );
 }

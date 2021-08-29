@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { forwardRef } from "react";
+/* 
 export function Modal({ idSelect, children, centered, isStatic }) {
   return (
     <>
@@ -20,6 +20,28 @@ export function Modal({ idSelect, children, centered, isStatic }) {
     </>
   );
 }
+ */
+export const ModalDom = forwardRef(
+  ({ idSelect, children, centered, isStatic }, ref) => {
+    return (
+      <div
+        className="modal fade"
+        id={idSelect}
+        tabIndex="-1"
+        aria-hidden="true"
+        data-bs-backdrop={isStatic ? "static" : null}
+        data-bs-keyboard={isStatic ? "false" : null}
+        ref={ref}
+      >
+        <div
+          className={`modal-dialog ${centered ? "modal-dialog-centered" : ""}`}
+        >
+          <div className="modal-content">{children}</div>
+        </div>
+      </div>
+    );
+  }
+);
 
 export function ModalHeader({ children }) {
   return <div className="modal-header">{children}</div>;
