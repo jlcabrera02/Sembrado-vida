@@ -5,7 +5,6 @@ import { Modal } from "bootstrap";
 
 function ModalDelete({ options, modalSuccess, modalError }) {
   const deleteDetalle = () => {
-    console.log(options);
     helpHttp()
       .del("/Detalles.php", options)
       .then((res) => {

@@ -16,7 +16,7 @@ function AddEvent() {
     <>
       {!session && <Example />}
       <Header />
-      <BtnBack type="info" />
+      <BtnBack type="tm-purple" />
       <div className="d-flex justify-content-around flex-wrap m-3">
         {data && <CardFormEvent data={data} auth={auth} />}{" "}
         {data && <Count number={data.Total} />}

@@ -38,13 +38,6 @@ export default function ConteinerCardDetalles({ id, vivero }) {
       .catch((err) => console.log(err));
   };
 
-  /* const put = (data) => {
-    setOptions({
-      headers: { "Content-type": "application/json" },
-      body: { ...data, ...authCredencials },
-    });
-  }; */
-
   return (
     <>
       <button className="m-auto d-block my-4 add-event p-1" onClick={clickBtn}>

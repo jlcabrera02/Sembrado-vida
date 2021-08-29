@@ -143,7 +143,7 @@ function BtnSubmit({ isPending, error }) {
     <>
       <button
         type="submit"
-        className="mx-auto btn btn-info my-3 wth-80 d-block"
+        className="mx-auto btn btn-tm-purple my-3 wth-80 d-block"
         name="Submit"
         disabled={isPending || error}
       >

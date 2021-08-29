@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "./Card";
-import perfil from "../assets/arbolDefault.svg";
 
 export default function CardHome({ el }) {
   const contador = {
@@ -17,8 +16,8 @@ export default function CardHome({ el }) {
     <>
       <Card>
         <img
-          src={perfil}
-          alt="defaultPerfil"
+          src={el.Perfil}
+          alt={el.Alt}
           className="mx-auto my-1 d-block rounded-circle w-50"
         />
         <h5 className="text-center m-0 p-0">{el.Planta}</h5>

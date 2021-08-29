@@ -18,8 +18,6 @@ function ModalMatar({ options, modal, modalError, modalSuccess }) {
       },
     };
 
-    console.log(option);
-
     helpHttp()
       .put("/Detalles.php", option)
       .then((res) => {

@@ -8,7 +8,7 @@ function Count({ number }) {
   };
 
   return (
-    <div className="border border-info rounded-circle d-flex wth-300px hgt-300px my-3">
+    <div className="border border-tm-purple rounded-circle d-flex wth-300px hgt-300px my-3">
       <p className="m-auto">
         <span style={style}> {number}</span>
       </p>

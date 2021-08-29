@@ -24,7 +24,7 @@ export default function useGetData(url) {
       .catch((err) => {
         setError(true);
         setIsPending(false);
-        console.log(err);
+        setDataError(err);
       });
 
     return () => {

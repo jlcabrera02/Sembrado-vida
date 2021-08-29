@@ -58,7 +58,7 @@ class PlantasModel extends Model{
   }
 
   protected function get_data($id = "") {
-    $this->query = "SELECT arb.id_arbol, arb.Planta, arb.Ncientifico, arb.Categoria, arb.Perfil, SUM(det.Planta_viva) as Total, cac.cac FROM arboles AS arb INNER JOIN detalles AS det INNER JOIN cac AS cac ON det.id_arbol = arb.id_arbol AND arb.cac = cac.id_cac WHERE arb.Cac = $id GROUP BY (arb.id_arbol)";
+    $this->query = "SELECT arb.id_arbol, arb.Planta, arb.Ncientifico, arb.Categoria, arb.Perfil, arb.Alt, SUM(det.Planta_viva) as Total, cac.cac FROM arboles AS arb INNER JOIN detalles AS det INNER JOIN cac AS cac ON det.id_arbol = arb.id_arbol AND arb.cac = cac.id_cac WHERE arb.Cac = $id GROUP BY (arb.id_arbol)";
 
     $this->get_query();
     

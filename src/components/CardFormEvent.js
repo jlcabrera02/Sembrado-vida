@@ -7,8 +7,8 @@ function CardFormEvent({ data, auth }) {
     <div className="d-flex flex-column align-items-center">
       <figure className="d-flex">
         <img
-          className="wth-100px hgt-100px border border-info rounded-circle"
-          src={`http://192.168.1.109/${data.Perfil}`}
+          className="wth-100px hgt-100px border border-tm-purple rounded-circle"
+          src={data.Perfil}
           alt={data.Alt}
         />
         <div className="d-flex flex-column justify-content-center">

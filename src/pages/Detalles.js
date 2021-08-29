@@ -19,7 +19,6 @@ export default function Detalles() {
   } else {
     sessionStorage.removeItem("id");
   }
-  //console.log(data, error, isPending, dataError);
 
   return (
     <>

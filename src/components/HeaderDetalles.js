@@ -1,5 +1,4 @@
 import React from "react";
-import perfil from "../assets/arbolDefault.svg";
 
 export default function HeaderDetalles({ data }) {
   const img = {
@@ -13,7 +12,7 @@ export default function HeaderDetalles({ data }) {
     <>
       <header className="cabecera-detalle d-flex justify-content-center align-items-center">
         <div className="d-flex img-planta">
-          <img src={perfil} alt={data.Perfil} style={img} />
+          <img src={data.Perfil} alt={data.Alt} style={img} />
         </div>
       </header>
     </>

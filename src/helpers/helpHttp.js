@@ -15,7 +15,6 @@ export default function helpHttp() {
     if (!options.body) delete options.body;
 
     setTimeout(() => abort.abort(), 5000);
-    console.log(options);
 
     return fetch(endpoint, options).then((res) =>
       res.ok
@@ -28,9 +27,7 @@ export default function helpHttp() {
     );
   };
 
-  //let host = "https://jlcabrera.000webhostapp.com";
-  //let host = "http://localhost/backend";
-  let host = "http://192.168.1.109";
+  let host = "https://jlcabrera.000webhostapp.com";
 
   const get = (url, options = {}) => customFetch(`${host}${url}`, options);
 
