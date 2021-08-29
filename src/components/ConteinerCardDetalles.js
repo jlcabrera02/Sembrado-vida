@@ -6,8 +6,8 @@ import useGetData from "../hooks/useGetData";
 import Loader from "./Loader";
 import CardDetallesAdmin from "./CardDetallesAdmin";
 import helpHttp from "../helpers/helpHttp";
-import { Modal, ModalBody, ModalHeader, ModalFooter } from "./Modals";
-import usePutData from "../hooks/usePutData";
+import { Modal, ModalBody, ModalFooter } from "./Modals";
+import ModalMatar from "./cDetalles/ModalMatar";
 
 export default function ConteinerCardDetalles({ id, vivero }) {
   const [options, setOptions] = useState({});
@@ -76,51 +76,6 @@ export default function ConteinerCardDetalles({ id, vivero }) {
       <ModalMatar options={options} />
       <ModalDelete />
     </>
-  );
-}
-
-function ModalMatar({ options }) {
-  const matar = (e) => {
-    e.preventDefault();
-
-    const myObject = {
-      headers: { ...options.headers },
-      body: {
-        cantidad: e.target.cantidad.value,
-        ...options.body,
-      },
-    };
-
-    console.log(myObject);
-  };
-
-  const { data, error, isPending } = usePutData("/Detalles.php", options);
-  console.log(data);
-
-  return (
-    <Modal idSelect="matar" centered>
-      <ModalHeader>
-        <h2 className="text-center">Plantas muertas</h2>
-        <button
-          type="button"
-          className="btn btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        >
-          close
-        </button>
-      </ModalHeader>
-      <ModalBody>
-        <form method="PUT" onSubmit={matar}>
-          <label>¿Cuantas plantas no sobrevivieron?</label>
-          <input type="number" min="1" max="10" name="cantidad" />
-          <input type="submit" value="matar" />
-        </form>
-      </ModalBody>
-      <ModalFooter>
-        <button>cerrar</button>
-      </ModalFooter>
-    </Modal>
   );
 }
 
