@@ -6,7 +6,7 @@ class PlantasController extends PlantasModel {
     $respuestas  = new RespuestasController();
     /*El parametro id hace referencia al CAC al que queremos consultar*/
     $get = $this->read($id);
-    if ($get[0]["Planta"] == NULL){
+    if ($get[0]["Planta"] == null){
       return $respuestas->error_406();
     }else{
       return $get[0];

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 require_once "Autoload.php";
 $Autoload = new Autoload;
 
@@ -56,3 +57,4 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
   echo json_encode($del);
 
 }
+?>

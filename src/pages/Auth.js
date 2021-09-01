@@ -59,7 +59,7 @@ function Login() {
           <label htmlFor="Correo">Escribe tu correo</label>
           <input
             className="form-control my-2"
-            type="email"
+            type="text"
             name="Correo"
             id="Correo"
             placeholder="correo"

@@ -18,7 +18,8 @@ export default function CardHome({ el }) {
         <img
           src={el.Perfil}
           alt={el.Alt}
-          className="mx-auto my-1 d-block rounded-circle w-50"
+          className="mx-auto my-1 d-block rounded-circle wth-100px hgt-100px"
+          style={{ objectFit: "cover" }}
         />
         <h5 className="text-center m-0 p-0">{el.Planta}</h5>
         <h6 className="text-center m-0 p-0">{el.Ncientifico}</h6>

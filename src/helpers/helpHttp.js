@@ -27,7 +27,7 @@ export default function helpHttp() {
     );
   };
 
-  let host = "https://jlcabrera.000webhostapp.com";
+  let host = "http://jlcabrera.000webhostapp.com";
 
   const get = (url, options = {}) => customFetch(`${host}${url}`, options);
 

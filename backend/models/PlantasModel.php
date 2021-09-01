@@ -41,9 +41,7 @@ class PlantasModel extends Model{
   }
 
   public function read($id = ""){
-    //$this->query = "SELECT arb.Planta, arb.Ncientifico, arb.Perfil, arb.Alt, arb.Categoria, cac.Cac, SUM(det.Planta_viva) as Total FROM arboles AS arb INNER JOIN Cac AS cac INNER JOIN detalles AS det ON cac.id_cac = arb.Cac AND det.id_arbol = arb.id_arbol WHERE arb.id_arbol = $id GROUP BY (arb.id_arbol)";
-
-    $this->query = "SELECT arb.Planta, arb.Ncientifico, arb.Perfil, arb.Alt, arb.Categoria, cac.Cac, IFNULL(SUM(CASE WHEN det.Planta_viva > 0 THEN det.Planta_viva ELSE 0 END),0) AS Total FROM arboles AS arb INNER JOIN Cac AS cac INNER JOIN detalles AS det ON cac.id_cac = arb.Cac AND det.id_arbol = arb.id_arbol WHERE arb.id_arbol = $id";
+    $this->query = "SELECT arb.Planta, arb.Ncientifico, arb.Perfil, arb.Alt, arb.Categoria, cac.Cac, IFNULL(SUM(CASE WHEN det.Planta_viva > 0 THEN det.Planta_viva ELSE 0 END),0) AS Total FROM arboles AS arb INNER JOIN cac AS cac INNER JOIN detalles AS det ON cac.id_cac = arb.Cac AND det.id_arbol = arb.id_arbol WHERE arb.id_arbol = $id";
 
     $this->get_query();
     
@@ -72,7 +70,7 @@ class PlantasModel extends Model{
   }
 
   protected function get_planta_cac($id = ""){
-    $this->query = "SELECT arb.*, cac.Cac FROM arboles AS arb INNER JOIN cac as cac WHERE arb.Cac = $id";
+    $this->query = "SELECT arb.*, cac.Cac FROM arboles AS arb INNER JOIN cac as cac ON arb.Cac = cac.id_cac WHERE arb.Cac = $id";
 
     $this->get_query();
 

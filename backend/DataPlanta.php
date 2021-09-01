@@ -1,5 +1,6 @@
 <?php
-//Este script de php me extrae la información de total de plantas con o sin detalles ya que la planta que no tiene avance no se muestra en la página principal
+//Muestra las plantas que tiene cada cac para poder añadirles un detalle, cac venado o prosperidad = $_GET["id"]
+declare(strict_types=1);
 require_once "Autoload.php";
 $Autoload = new Autoload;
 header("Access-Control-Allow-Headers: content-type");
@@ -19,6 +20,8 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
   echo json_encode($resp);
   
 }else{
-  echo "Método no permitido";
+  echo JSON_ENCODE(["Error" => "Método no permitido"]);
   http_response_code(400);
 }
+
+?>
